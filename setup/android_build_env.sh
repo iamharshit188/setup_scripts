@@ -1,9 +1,5 @@
 #!/usr/bin/env bash
 
-# Copyright (C) 2018 Harsh 'MSF Jarvis' Shandilya
-# Copyright (C) 2018 Akhil Narang
-# SPDX-License-Identifier: GPL-3.0-only
-
 # Script to setup an AOSP Build environment on Ubuntu and Linux Mint
 
 LATEST_MAKE_VERSION="4.3"
