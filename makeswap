@@ -1,0 +1,35 @@
+#!/bin/bash
+
+# Define the swap file path
+SWAPFILE=/swapfile
+
+# Check if the swap file already exists
+if [ -e "$SWAPFILE" ]; then
+    echo "Swap file $SWAPFILE already exists."
+    exit 1
+fi
+
+# Create an empty 16GB swap file
+sudo fallocate -l 16G "$SWAPFILE"
+
+# Set permissions to restrict access
+sudo chmod 600 "$SWAPFILE"
+
+# Format the swap file
+sudo mkswap "$SWAPFILE"
+
+# Enable the swap file
+sudo swapon "$SWAPFILE"
+
+# Add the swap file entry to /etc/fstab to make it persistent
+echo "$SWAPFILE none swap sw 0 0" | sudo tee -a /etc/fstab
+
+# Display swap information
+echo "Swap file created and enabled. Swap status:"
+sudo swapon --show
+
+# Display the free memory and swap space
+free -h
+
+echo "Swap setup complete."
+
